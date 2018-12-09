@@ -12,7 +12,10 @@ eureka:
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka/,http://127.0.0.1:8762/eureka/
 zuul:
+  host:
+    max-total-connections: 200
+    max-per-route-connections: 20
   routes:
     sale:
-      path: /sale/**
-      serviceId: first-service-invoker
+      path: /test/**
+      url: forward:/source/hello
