@@ -1,0 +1,16 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: first-service-provider
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    lease-renewal-interval-in-seconds: 2 #该字段代表每2s像服务器发送一次心跳
+    lease-expiration-duration-in-seconds: 6  #该字段代表如果6s内没有接收到客户端发过来的心跳，则会从实例中清除掉这个实例
+    metadata-map:
+      company-name: clz
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/,http://127.0.0.1:8762/eureka/
+    registry-fetch-interval-seconds: 30  #客户端每隔30s去服务器抓取注册表，并放入本地缓存中（此处设置的是默认值）
