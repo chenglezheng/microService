@@ -17,5 +17,5 @@ zuul:
     max-per-route-connections: 20
   routes:
     sale:
-      path: /test/**
-      url: forward:/source/hello
+      path: /invoker/**
+      serviceId: first-service-invoker
